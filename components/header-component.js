@@ -21,7 +21,7 @@ export function renderHeaderComponent({ element }) {
   </div>
   
 `;
-
+// кнопка добавления комментариев(крестик)
   element
     .querySelector(".add-or-login-button")
     .addEventListener("click", () => {
