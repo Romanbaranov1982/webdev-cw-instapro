@@ -1,3 +1,5 @@
+import { getToken, goToPage } from "./index.js";
+import { POSTS_PAGE } from "./routes.js";
 // Замени на свой, чтобы получить независимый от других набор данных.
 // "боевая" версия инстапро лежит в ключе prod
 // ???
@@ -5,7 +7,7 @@ const personalKey = "roman-baranov";
 // базовый хост
 const baseHost = "https://webdev-hw-api.vercel.app";
 const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`;
-// получение списка комментов
+// получение списка комментов +
 export function getPosts({ token }) {
   return fetch(postsHost, {
     method: "GET",
@@ -70,3 +72,60 @@ export function uploadImage({ file }) {
     return response.json();
   });
 }
+// // добавление комментария в апи
+export const onAddPostClick = (({ description, imageUrl }) => {
+  const token = getToken();
+
+  fetch(postsHost, {
+    method: "POST",
+    body: JSON.stringify({
+
+      description: description,
+      imageUrl: imageUrl,
+
+    }),
+    headers: {
+
+      'Authorization': token,
+    },
+  })
+    .then((response) => {
+      if (response.status === 400) {
+        throw new Error("Описание фото отсутствует");
+      } else if (response.status === 500) {
+        onAddPostClick(description, imageUrl);
+        // throw new Error("Сервис временно недоступен, пожалуйста попробуйте позже");
+      } else {
+        return response.json();
+      }
+    })
+    .then(() => {
+
+      goToPage(POSTS_PAGE)
+
+    })
+    .catch((error) => {
+
+      if (error.message === 'Failed to fetch') {
+        alert('Нет соединения с интернетом, проверьте ваше подключение');
+      } else {
+        alert(error.message);
+      }
+
+    });
+
+})
+
+export const postImage = ({ file }) => {
+  const data = new FormData();
+  data.append("file", file);
+
+  return fetch(baseHost + "/api/upload/image", {
+    method: "POST",
+    body: data,
+  })
+    .then((response) => {
+      return response.json();
+    })
+};
+ 

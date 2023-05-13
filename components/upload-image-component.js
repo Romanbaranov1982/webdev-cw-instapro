@@ -48,6 +48,7 @@ export function renderUploadImageComponent({ element, onImageUrlChange }) {
     element
       .querySelector(".file-upload-remove-button")
       ?.addEventListener("click", () => {
+        console.log(4);
         imageUrl = "";
         onImageUrlChange(imageUrl);
         render();
