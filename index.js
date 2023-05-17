@@ -25,6 +25,18 @@ export const getToken = () => {
   return token;
 };
 
+export const updatePage = () => {
+  return getPosts({ token: getToken() })
+    .then((newPosts) => {
+      page = POSTS_PAGE;
+      posts = newPosts;
+      renderApp();
+    })
+    .catch((error) => {
+      console.error(error);
+         });
+}
+
 export const logout = () => {
   user = null;
   removeUserFromLocalStorage();
@@ -76,7 +88,7 @@ export const goToPage = (newPage, data) => {
       })
       .catch((error) => {
         console.error(error);
-        // goToPage(POSTS_PAGE);
+      
       });
   }
 

@@ -149,3 +149,23 @@ export const showUserPost = ({token, userId }) => {
 
 }
  
+// добавить лайк
+export const likePost = (postId, token) => {
+  return fetch(postsHost + `/${postId}/like`, {
+    method: "POST",
+    headers: {
+      Authorization: token,
+    }
+  });
+
+}
+// дизлайк
+export const dislikePost = (postId, token) => {
+  return fetch(postsHost + `/${postId}/dislike`, {
+    method: "POST",
+    headers: {
+      Authorization: token,
+    }
+  });
+
+}
