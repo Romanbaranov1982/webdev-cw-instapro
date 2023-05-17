@@ -52,9 +52,11 @@ export function renderPostsPageComponent({ appEl }) {
 
   for (let userEl of document.querySelectorAll(".post-header")) {
     userEl.addEventListener("click", () => {
+      console.log(3);
       goToPage(USER_POSTS_PAGE, {
         userId: userEl.dataset.userId,
       });
     });
   }
+  // likeButtonEvent(posts, renderApp);
 }

@@ -128,4 +128,24 @@ export const postImage = ({ file }) => {
       return response.json();
     })
 };
+// покажи посты пользователя
+export const showUserPost = ({token, userId }) => {
+
+  return fetch(postsHost + `/user-posts/${userId}`, {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((response) => {
+      if (response.status === 401) {
+        throw new Error("Нет авторизации");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return data.posts;
+    });
+
+}
  
