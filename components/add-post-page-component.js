@@ -25,7 +25,6 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
       </div>
       
       ${imageUrl ?
-
         `<div class="file-upload-image-conrainer">
         <img class="file-upload-image" src="${imageUrl}" alt="" id="img"/>
          <label class="file-upload-label secondary-button">
@@ -33,9 +32,7 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
          "Изменить фото"
        </button>
        </label>
-       </div>`
-
-        :
+       </div>`       :
 
         inputImg
 

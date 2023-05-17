@@ -1,6 +1,6 @@
 import { likePost, dislikePost } from "../api.js";
 import { getToken, updatePage } from "../index.js";
-import { POSTS_PAGE } from "../routes.js";
+// import { POSTS_PAGE } from "../routes.js";
 
 export const likeButtonEvent = (posts) => {
 
@@ -10,9 +10,9 @@ export const likeButtonEvent = (posts) => {
         likeButtonElement.addEventListener('click', (event) => {
 
             const postId = likeButtonElement.dataset.postId;
-            const selectedPost = posts.find((post) => post.id === postId);
+            const choicePost = posts.find((post) => post.id === postId);
             const token = getToken();
-            if (!selectedPost.isLiked) {
+            if (!choicePost.isLiked) {
                 likePost(postId, token)
                     .then(() => {
                         updatePage();

@@ -11,6 +11,7 @@ export function renderPostsPageComponent({ appEl }) {
    * TODO: чтобы отформатировать дату создания поста в виде "19 минут назад"
    * можно использовать https://date-fns.org/v2.29.3/docs/formatDistanceToNow
    */
+  
   let numb = posts.map(post => {
     return` <ul class="posts" id ="posts">
   <li class="post">
@@ -36,7 +37,7 @@ export function renderPostsPageComponent({ appEl }) {
                    <p class="post-date">
                      19 минут назад
                    </p>
-                 </li>;
+                 </li>
    </ul>`
   });
   const appHtml = `
