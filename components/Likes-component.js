@@ -2,7 +2,7 @@ import { likePost, dislikePost } from "../api.js";
 import { getToken, updatePage } from "../index.js";
 // import { POSTS_PAGE } from "../routes.js";
 
-export const likeButtonEvent = (posts) => {
+export const likeButtonFunk = (posts) => {
 
     const likeButtonElements = document.querySelectorAll(".like-button");
     for (const likeButtonElement of likeButtonElements) {
